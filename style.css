@@ -141,7 +141,7 @@ i {
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
-.dice1 {
+.dice {
     position: absolute;
     left: 50%;
     top: 138px;
@@ -150,15 +150,22 @@ i {
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
 }
 
-.dice2 {
+#dice1 { top: 138px }
+#dice1 { top: 258px }
+
+#input_score {
     position: absolute;
     left: 50%;
-    top: 258px;
     transform: translateX(-50%);
-    height: 100px;
-    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+    top: 520px;
+    color: #555;
+    font-size: 18px;
+    font-family: 'Lato';
+    text-align: center;
+    padding: 10px;
+    width: 160px;
+    text-transform: uppercase;
 }
-
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }

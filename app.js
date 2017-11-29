@@ -10,8 +10,8 @@ GAME RULES:
 */
 
 var scores, roundScore, activePlayer, dice1Dom, dice2Dom, gamePlaying, previousDice1, previousDice2, winScore;
-dice1Dom = document.querySelector('.dice1');
-dice2Dom = document.querySelector('.dice2');
+dice1Dom = document.getElementById('dice1');
+dice2Dom = document.getElementById('dice2');
 
 init();
 
@@ -23,15 +23,15 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         dice2Dom.style.display = 'block';
         dice1Dom.src = 'dice-' + dice1 + '.png';
         dice2Dom.src = 'dice-' + dice2 + '.png';
-        if ((dice1 === 6 || dice2 === 6) &&
-            (dice1 === previousDice1 || dice1 === previousDice2 || dice2 === previousDice1 || dice2 === previousDice2)) {
+        if ((dice1 === 6 || dice2 === 6) && (previousDice1 === 6 || previousDice2 === 6)) {
             scores[activePlayer] = 0;
             document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
             nextPlayer();
         } else if (dice1 !== 1 && dice2 !== 1) {
             roundScore += dice1 + dice2;
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
-            previousDice = dice1;
+            previousDice1 = dice1;
+            previousDice2 = dice2;
         } else {
             nextPlayer();
         }
@@ -44,7 +44,8 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
         document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
         if (scores[activePlayer] >= winScore) {
             document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
-            diceDom.style.display = 'none';
+            dice1Dom.style.display = 'none';
+            dice2Dom.style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
             gamePlaying = false;
@@ -74,6 +75,8 @@ function init() {
     scores = [0, 0];
     roundScore = 0;
     activePlayer = 0;
+    previousDice1 = 0;
+    previousDice2 = 0;
     dice1Dom.style.display = 'none';
     dice2Dom.style.display = 'none';
     document.getElementById('score-0').textContent = 0;
